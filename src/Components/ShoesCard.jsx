@@ -17,7 +17,7 @@ const ShoesCard = ({ title, brand, img, price }) => {
 
           <h3
             title={title}
-            className="text-neutral-200 text-xl px-1.5 mt-2 truncate"
+            className="text-neutral-200 text-lg px-1.5 mt-2 truncate"
           >
             {title}
           </h3>
