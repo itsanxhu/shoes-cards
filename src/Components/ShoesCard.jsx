@@ -1,18 +1,44 @@
-import { IconShoppingBagCheck } from "@tabler/icons-react";
-import { IconHeart } from "@tabler/icons-react";
+import {
+  IconHeart,
+  IconHeartFilled,
+  IconShoppingBagCheck,
+} from "@tabler/icons-react";
+import { useState } from "react";
 
-const ShoesCard = ({ title, brand, img, price }) => {
+const ShoesCard = ({ title, brand, img, price, hoverImg }) => {
+  const [hovered, sethovered] = useState(false);
+  const [liked, setLiked] = useState(false);
   return (
     <div className="flex justify-center mt-28">
-      <div className="h-83 w-60 bg-neutral-800 rounded-2xl p-2 flex flex-col justify-between cursor-pointer">
+      <div className="h-83 w-60 bg-neutral-800 rounded-2xl p-2 flex flex-col justify-between cursor-pointer transition-opacity duration-200 shadow-lg">
         <div className="relative">
-          <img
-            className="rounded-xl h-50 w-60 object-cover"
-            src={img}
-            alt="shoe image here"
-          />
-          <div className="absolute text-neutral-200 top-1.5 right-1.5 h-8 w-8 bg-neutral-800 rounded-full flex justify-center items-center">
-            <IconHeart stroke={1.5} size={22} />
+          <div
+            className="relative h-50 w-full"
+            onMouseEnter={() => sethovered(true)}
+            onMouseLeave={() => sethovered(false)}
+          >
+            <img
+              className={`absolute inset-0 rounded-xl h-full w-full object-cover transition-opacity duration-500 ${hovered ? "opacity-0" : "opacity-100"}`}
+              src={img}
+              alt="shoe image here"
+            />
+            <img
+              className={`absolute inset-0 rounded-xl h-full w-full object-cover transition-opacity duration-500 ${hovered ? "opacity-100" : "opacity-0"}`}
+              src={img}
+              src={hoverImg}
+              alt="shoe image here"
+            />
+          </div>
+
+          <div
+            onClick={() => setLiked(!liked)}
+            className="absolute text-neutral-200 top-1.5 right-1.5 h-8 w-8 bg-neutral-800 rounded-full flex justify-center items-center"
+          >
+            {liked ? (
+              <IconHeartFilled size={22} className="text-red-500" />
+            ) : (
+              <IconHeart stroke={1.5} size={22} className="text-neutral-200" />
+            )}
           </div>
 
           <h3
@@ -30,7 +56,7 @@ const ShoesCard = ({ title, brand, img, price }) => {
             <h1 className="text-neutral-200 text-3xl font-bold px-1.5">
               {price}$
             </h1>
-            <div className="h-11 w-11 bg-neutral-200 rounded-xl flex justify-center items-center">
+            <div className="h-11 w-11 bg-neutral-200 rounded-xl flex justify-center items-center transition-all duration-200 active:scale-95">
               <IconShoppingBagCheck stroke={2} size={30} />
             </div>
           </div>
