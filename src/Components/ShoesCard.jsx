@@ -32,7 +32,7 @@ const ShoesCard = ({ title, brand, img, price, hoverImg }) => {
 
           <div
             onClick={() => setLiked(!liked)}
-            className="absolute text-neutral-200 top-1.5 right-1.5 h-8 w-8 bg-neutral-800 rounded-full flex justify-center items-center"
+            className="absolute text-neutral-200 top-1.5 right-1.5 h-8 w-8 bg-neutral-800 rounded-full flex justify-center items-center active:scale-125 hover:scale-95 transition-transform duration-300"
           >
             {liked ? (
               <IconHeartFilled size={22} className="text-red-500" />
